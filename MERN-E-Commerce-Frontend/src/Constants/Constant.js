@@ -44,7 +44,7 @@ const handleClose = (setOpenAlert) => {
 };
 const getAllProducts = async (setData) => {
     try {
-        const { data } = await axios.get(process.env.REACT_APP_FETCH_PRODUCT);
+        const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/product/fetchproduct`);
         setData(data)
 
 

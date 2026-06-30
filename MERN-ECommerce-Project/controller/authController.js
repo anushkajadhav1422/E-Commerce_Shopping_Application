@@ -394,7 +394,7 @@ exports.loginUser = async (req, res) => {
           data: "Login successful",
           name: `${user.firstName} ${user.lastName}`,
           email: user.email,
-          token,
+          authToken: token,
           role: user.role,
         });
     }

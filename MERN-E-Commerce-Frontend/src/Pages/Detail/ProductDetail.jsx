@@ -52,23 +52,29 @@ const ProductDetail = () => {
     }, [id])
 
     const fetchCartAgain = async () => {
-    const token = localStorage.getItem("Authorization");
+        const token = localStorage.getItem("Authorization");
 
-    const { data } = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/api/cart/fetchcart`,
-        {
-            headers: {
-                Authorization: `Bearer ${authToken}`
+        const { data } = await axios.get(
+            `${process.env.REACT_APP_BASE_URL}/api/cart/fetchcart`,
+            {
+                headers: {
+                    Authorization: `Bearer ${authToken}`
+                }
             }
-        }
-    );
+        );
 
-    setCart(data);
-};
+        setCart(data);
+    };
 
     const addToCart = async () => {
+
+        console.log("Product object:", product);
+        console.log("Product ID:", product._id);
+        console.log("Quantity:", productQuantity);
         try {
             const token = localStorage.getItem("Authorization");
+            console.log("token: ", token);
+
 
             const { data } = await axios.post(
                 `${process.env.REACT_APP_BASE_URL}/api/cart/addcart`,
@@ -78,10 +84,12 @@ const ProductDetail = () => {
                 },
                 {
                     headers: {
-                        Authorization: `Bearer ${authToken}`
+                        Authorization: `Bearer ${token}`
                     }
                 }
             );
+            console.log(token);
+
 
             await fetchCartAgain();
 
@@ -97,23 +105,44 @@ const ProductDetail = () => {
     const addToWhishList = async (product) => {
         if (setProceed) {
             try {
-                const { data } = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/wishlist/addwishlist`, { _id: product._id }, {
-                    headers: {
-                        'Authorization': `Bearer ${authToken}`
+
+                const token = localStorage.getItem("Authorization");
+
+                const { data } = await axios.post(
+                    `${process.env.REACT_APP_BASE_URL}/api/wishlist/addwishlist`,
+                    {
+                        _id: product._id
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
                     }
-                })
-                setWishlistData(data)
-                setWishlistData([...wishlistData, product])
-                toast.success("Added To Wishlist", { autoClose: 500, theme: 'colored' })
+                );
+
+                setWishlistData(prev => [...prev, data]);
+
+                toast.success("Added To Wishlist", {
+                    autoClose: 500,
+                    theme: "colored"
+                });
+
+            } catch (error) {
+
+                console.log(error);
+
+                toast.error(
+                    error.response?.data?.msg || "Something went wrong",
+                    {
+                        autoClose: 500,
+                        theme: "colored"
+                    }
+                );
             }
-            catch (error) {
-                toast.error(error.response.data.msg, { autoClose: 500, theme: 'colored' })
-            }
-        }
-        else {
+
+        } else {
             setOpenAlert(true);
         }
-
     };
     const shareProduct = (product) => {
 

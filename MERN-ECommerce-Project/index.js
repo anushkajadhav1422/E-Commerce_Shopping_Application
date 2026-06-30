@@ -12,6 +12,7 @@ const review = require('./routes/review')
 const paymentRoute = require('./routes/paymentRoute')
 const forgotPassword = require('./routes/forgotPassword')
 const AdminRoute = require('./routes/adminRoute')
+const Authuser = require('./routes/auth')
 const dotenv = require('dotenv');
 dotenv.config()
 
@@ -39,6 +40,8 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 // Available Routes
 app.use('/api/auth', auth)
+
+app.use('/api/authuser', Authuser)
 
 app.use('/api/product', product)
 

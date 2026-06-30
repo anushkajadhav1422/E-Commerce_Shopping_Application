@@ -1,13 +1,13 @@
-// const express = require('express');
-// const jwt = require("jsonwebtoken");
-// const User = require('../models/User');
-// const router = express.Router();
-// const bcrypt = require('bcrypt');
-// const { body, validationResult } = require('express-validator');
-// const authUser = require('../middleware/authUser');
-// const dotenv = require('dotenv');
-// const { deleteAllUserData } = require('../controller/deleteUser');
-// dotenv.config()
+const express = require('express');
+const jwt = require("jsonwebtoken");
+const User = require('../models/User');
+const router = express.Router();
+const bcrypt = require('bcrypt');
+const { body, validationResult } = require('express-validator');
+const authUser = require('../middleware/authUser');
+const dotenv = require('dotenv');
+const { deleteAllUserData } = require('../controller/deleteUser');
+dotenv.config()
 
 
 // // create a user :post "/auth",!auth
@@ -106,39 +106,39 @@
 // );
 // // logged in user details
 
-// router.get('/getuser', authUser, async (req, res) => {
+router.get('/getuser', authUser, async (req, res) => {
 
-//     try {
-//         const user = await User.findById(req.user.id).select("-password")
-//         success = true
-//         res.send(user)
+    try {
+        const user = await User.findById(req.user.id).select("-password")
+        success = true
+        res.send(user)
 
-//     } catch (error) {
-//         res.status(400).send("Something went wrong")
-//     }
-// }
-// )
+    } catch (error) {
+        res.status(400).send("Something went wrong")
+    }
+}
+)
 
 
-// // update user details
-// router.put('/updateuser', authUser, async (req, res) => {
-//     const { userDetails } = req.body
-//     let convertData = JSON.parse(userDetails)
-//     try {
-//         const user = await User.findById(req.user.id)
-//         if (user) {
-//             let updateDetails = await User.findByIdAndUpdate(req.user.id, { $set: convertData })
-//             success = true
-//             res.status(200).send({ success })
-//         }
-//         else {
-//             return res.status(400).send("User Not Found")
-//         }
-//     } catch (error) {
-//         res.send("Something went wrong")
-//     }
-// })
+// update user details
+router.put('/updateuser', authUser, async (req, res) => {
+    const { userDetails } = req.body
+    let convertData = JSON.parse(userDetails)
+    try {
+        const user = await User.findById(req.user.id)
+        if (user) {
+            let updateDetails = await User.findByIdAndUpdate(req.user.id, { $set: convertData })
+            success = true
+            res.status(200).send({ success })
+        }
+        else {
+            return res.status(400).send("User Not Found")
+        }
+    } catch (error) {
+        res.send("Something went wrong")
+    }
+})
 
-// // delete user and user data
+// delete user and user data
 // router.delete('/delete/user/:userId', authUser, deleteAllUserData)
-// module.exports = router
+module.exports = router

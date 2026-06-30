@@ -45,6 +45,8 @@ router.delete("/deletecart/:id", authUser, async (req, res) => {
     const { id } = req.params;
     try {
         const result = await Cart.findByIdAndDelete(id)
+        console.log("result: ",result);
+        
         res.send(result);
     } catch (error) {
         res.status(500).send("Internal server error");

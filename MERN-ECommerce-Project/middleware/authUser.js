@@ -5,6 +5,7 @@ dotenv.config()
 const fetchUser = (req, res, next) => {
     try {
         const authHeader = req.header('Authorization');
+        console.log("AUTH HEADER:", authHeader);
 
         if (!authHeader) {
             return res.status(401).send("Access denied - No header");

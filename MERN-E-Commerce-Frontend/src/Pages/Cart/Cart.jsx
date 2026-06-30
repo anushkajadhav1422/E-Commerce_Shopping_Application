@@ -88,9 +88,9 @@ const Cart = () => {
     const removeFromCart = async (product) => {
         if (setProceed) {
             try {
-                const response = await axios.delete(`${process.env.REACT_APP_DELETE_CART}/${product._id}`, {
+                const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/cart/deletecart/${product._id}`,  {
                     headers: {
-                        'Authorization': authToken
+                        Authorization: `Bearer ${authToken}`
                     }
                 })
                 toast.success("Removed From Cart", { autoClose: 500, theme: 'colored' })

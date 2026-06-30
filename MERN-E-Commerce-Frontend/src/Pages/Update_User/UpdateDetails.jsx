@@ -43,9 +43,9 @@ const UpdateDetails = () => {
     }, [])
     const getUserData = async () => {
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_GET_USER_DETAILS}`, {
+            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/authuser/getuser`, {
                 headers: {
-                    'Authorization': authToken
+                    Authorization: `Bearer ${authToken}`
                 }
             })
             userDetails.firstName = data.firstName
@@ -110,7 +110,7 @@ const UpdateDetails = () => {
                 if (data.success === true) {
                     toast.success("Updated Successfully", { autoClose: 500, theme: 'colored' })
                     getUserData()
-                    
+
                 }
                 else {
                     toast.error("Something went wrong", { autoClose: 500, theme: 'colored' })
@@ -202,8 +202,8 @@ const UpdateDetails = () => {
                         </Grid>
                     </Grid>
                     <Container sx={{ display: 'flex', justifyContent: 'space-around', marginTop: 5 }}>
-                        <Button variant='contained' endIcon={<TiArrowBackOutline />} onClick={()=>navigate(-1)} >Back</Button>
-                        <Button variant='contained' endIcon={<AiOutlineFileDone />}  type='submit'>Save</Button>
+                        <Button variant='contained' endIcon={<TiArrowBackOutline />} onClick={() => navigate(-1)} >Back</Button>
+                        <Button variant='contained' endIcon={<AiOutlineFileDone />} type='submit'>Save</Button>
                     </Container>
                 </form >
 
