@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const { Schema } = mongoose;
+const crypto = require("crypto");
 
 const UserSchema = new Schema({
     firstName: {
@@ -88,21 +89,22 @@ UserSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 };
 
-UserSchema.methods.getResetPasswordToken = async function () {
-    // Generating Token
-    const resetToken = (Math.random() + 1).toString(36).substring(2); // Simple random token
+UserSchema.methods.getResetPasswordToken = function () {
 
-    // Hashing and adding resetPasswordToken to userSchema using bcrypt
-    let hashedToken = await bcrypt.hash(resetToken, 10); // Adjust salt rounds as needed
+    // Generate random token
+    const resetToken = crypto.randomBytes(20).toString("hex");
 
-    // Remove any '/' from the hashed token
-    hashedToken = hashedToken.replace(/\//g, '');
+    // Store hashed token in DB
+    this.resetPasswordToken = crypto
+        .createHash("sha256")
+        .update(resetToken)
+        .digest("hex");
 
-    this.resetPasswordToken = hashedToken;
+    // Expiry
+    this.resetPasswordExpire = Date.now() + 15 * 60 * 1000;
 
-    this.resetPasswordExpire = Date.now() + 15 * 60 * 1000; // Token valid for 15 minutes
-
-    return hashedToken; // Return the hashed token without '/'
+    // Return plain token
+    return resetToken;
 };
 
 module.exports = mongoose.model('user', UserSchema)

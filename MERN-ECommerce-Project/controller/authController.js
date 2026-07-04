@@ -427,8 +427,10 @@ exports.forgotPassword = async (req, res, next) => {
   }
 
   // Get ResetPassword Token
-  const resetToken = await user.getResetPasswordToken();
+  const resetToken = user.getResetPasswordToken();
   console.log(resetToken);
+  console.log("RESET TOKEN:", resetToken);
+console.log("DB TOKEN:", user.resetPasswordToken);
   
 
   await user.save({ validateBeforeSave: false });
@@ -531,10 +533,15 @@ exports.resetPassword = async (req, res, next) => {
       .update(token)
       .digest("hex");
 
+      console.log(hashedToken);
+      
+
     const user = await User.findOne({
       resetPasswordToken: hashedToken,
       resetPasswordExpire: { $gt: Date.now() },
     });
+    console.log(user);
+    
 
     if (!user) {
       return res.status(400).json({

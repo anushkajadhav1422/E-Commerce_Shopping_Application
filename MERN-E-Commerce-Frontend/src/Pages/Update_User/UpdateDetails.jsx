@@ -99,12 +99,12 @@ const UpdateDetails = () => {
                 toast.error("Please add state", { autoClose: 500, theme: 'colored' })
             }
             else {
-                const { data } = await axios.put(`${process.env.REACT_APP_UPDATE_USER_DETAILS}`, {
+                const { data } = await axios.put(`${process.env.REACT_APP_BASE_URL}/api/authuser/updateuser`, {
                     userDetails: JSON.stringify(userDetails)
                 },
                     {
                         headers: {
-                            'Authorization': authToken
+                            Authorization: `Bearer ${authToken}`
                         }
                     })
                 if (data.success === true) {
@@ -136,13 +136,13 @@ const UpdateDetails = () => {
                 toast.error("Please enter password with more than 5 characters", { autoClose: 500, theme: 'colored' })
             }
             else {
-                const { data } = await axios.post(`${process.env.REACT_APP_RESET_PASSWORD}`, {
+                const { data } = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/resetPassword`, {
                     id: userData._id,
                     currentPassword: password.currentPassword,
                     newPassword: password.newPassword,
                 }, {
                     headers: {
-                        'Authorization': authToken
+                        Authorization: `Bearer ${authToken}`
                     }
                 })
                 toast.success(data, { autoClose: 500, theme: 'colored' })
