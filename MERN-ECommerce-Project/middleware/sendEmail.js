@@ -1,33 +1,40 @@
 const nodeMailer = require("nodemailer");
+const transporter = require("./mail");
 
-const sendEmail = async (options) => {
+const sendEmail = async ({
+  email,
+  subject,
+  message,
+  attachments = [],
+}) => {
   try {
-    // Configure Nodemailer
-    const transporter = nodeMailer.createTransport({
-      service: 'Gmail',
-      auth: {
-        user: process.env.SMPT_MAIL,
-        pass: process.env.SMPT_PASSWORD,
-      },
-    });
-    // user: 'activation@ambicam.com',
-    // pass: 'paltwgecemunjpkn',
     const mailOptions = {
-      from: process.env.SMPT_MAIL,
-      to: options.email,
-      subject: options.subject,
-      html: options.message,
+      from: `"Shop It" <${process.env.SMPT_MAIL}>`,
+      to: email,
+      subject,
+      html: message,
+      attachments,
     };
 
+    const info = await transporter.sendMail(mailOptions);
 
-    await transporter.sendMail(mailOptions);
+    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    console.log("📧 Email Sent Successfully");
+    console.log("To        :", email);
+    console.log("Subject   :", subject);
+    console.log("Message ID:", info.messageId);
+    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
-    // Email sent successfully
-    return true;
+    return info;
   } catch (error) {
-    console.error("Email Error:", error.message);
-    // Error occurred while sending email
-    throw new Error(error.message);
+    console.error("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    console.error("❌ Email Sending Failed");
+    console.error("To      :", email);
+    console.error("Subject :", subject);
+    console.error(error);
+    console.error("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+
+    throw error;
   }
 };
 

@@ -44,7 +44,7 @@ const Login = () => {
         toast.error("Please enter valid password", { autoClose: 500, theme: 'colored' })
       }
       else if (credentials.email && credentials.password) {
-        const sendAuth = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/login`, { email: credentials.email, password: credentials.password })
+        const sendAuth = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/authUser/login`, { email: credentials.email, password: credentials.password })
         console.log(sendAuth.data);
         const receive = await sendAuth.data
         if (receive.success === true) {

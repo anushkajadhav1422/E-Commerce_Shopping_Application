@@ -4,7 +4,7 @@ const express = require('express')
 const cors = require('cors')
 const path = require('path');
 
-const auth = require('./routes/authRoute');
+const authUser = require('./routes/authRoute');
 const cart = require('./routes/cart')
 const wishlist = require('./routes/wishlist')
 const product = require('./routes/product')
@@ -12,7 +12,7 @@ const review = require('./routes/review')
 const paymentRoute = require('./routes/paymentRoute')
 const forgotPassword = require('./routes/forgotPassword')
 const AdminRoute = require('./routes/adminRoute')
-const Authuser = require('./routes/auth')
+const authAdmin = require('./routes/auth')
 const dotenv = require('dotenv');
 dotenv.config()
 
@@ -38,10 +38,10 @@ app.use(express.static(path.join(__dirname, 'build')));
 //     res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
 // });
 
-// Available Routes
-app.use('/api/auth', auth)
 
-app.use('/api/authuser', Authuser)
+app.use('/api/authUser', authUser)
+
+app.use('/api/authAdmin', authAdmin)
 
 app.use('/api/product', product)
 
@@ -50,11 +50,12 @@ app.use('/api/cart', cart)
 app.use('/api/wishlist', wishlist)
 
 app.use('/api/review', review)
+
 app.use('/api/admin', AdminRoute)
-// payment route
+
 app.use('/api', paymentRoute)
 
-// forgot Password route
+
 app.use('/api/password', forgotPassword)
 
 app.listen(port, () => {

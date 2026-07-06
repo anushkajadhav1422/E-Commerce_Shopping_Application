@@ -23,6 +23,9 @@ import AdminHomePage from './Admin/Pages/AdminHomePage';
 import SingleUserPage from './Admin/Pages/SingleUserPage';
 import SingleProduct from './Admin/Pages/SingleProduct';
 import AdminProtectedRoute from "./Navigation/AdminProtectRoute";
+import ResetPassword from "./Auth/ResetPassword/ResetPassword";
+
+
 
 
 
@@ -51,6 +54,8 @@ function App() {
             <Route path='/paymentsuccess' element={<PaymentSuccess />} />
             <Route path='/forgotpassword' element={<ForgotPasswordForm />} />
             <Route path='/user/reset/:id/:token' element={<AddNewPassword />} />
+            <Route path='/resetPassword/:token' element={<ResetPassword />} />
+
 
             {/* Admin Routes */}
             <Route path="/admin/login" element={< AdminLogin />} />

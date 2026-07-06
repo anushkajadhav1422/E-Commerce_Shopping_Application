@@ -13,7 +13,7 @@ const ForgotPasswordForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const sendEmail = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/forgotPassword`, { email: email })
+            const sendEmail = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/authUser/forgotPassword`, { email: email })
             console.log(sendEmail);
             
             toast.success(sendEmail.data.msg, { autoClose: 500, theme: 'colored' })

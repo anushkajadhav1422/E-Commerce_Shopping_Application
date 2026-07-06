@@ -30,8 +30,8 @@ const UserSchema = new Schema({
         default: false,
         type: Boolean
     },
-    Isverified: {
-        type: Number,
+    isVerified: {
+        type: Boolean,
         default: 0,
     },
     resetPasswordToken: {
@@ -62,7 +62,18 @@ const UserSchema = new Schema({
     },
     userState: {
         type: String
-    }
+    },
+    otp: String,
+
+    otpExpiry: Date,
+    loginAttempts: {
+        type: Number,
+        default: 0,
+    },
+
+    lockUntil: {
+        type: Date,
+    },
 
 }, { timestamps: true });
 

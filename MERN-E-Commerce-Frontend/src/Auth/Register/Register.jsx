@@ -50,7 +50,7 @@ const Register = () => {
         toast.error("Please enter password with more than 5 characters", { autoClose: 500, theme: 'colored' })
       }
       else if (credentials.email && credentials.firstName && credentials.lastName && credentials.phoneNumber && credentials.password) {
-        const sendAuth = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/register`,
+        const sendAuth = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/authUser/register`,
           {
             firstName: credentials.firstName,
             lastName: credentials.lastName,
