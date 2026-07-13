@@ -43,7 +43,7 @@ const UpdateDetails = () => {
     }, [])
     const getUserData = async () => {
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/authuser/getuser`, {
+            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/authAdmin/getuser`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`
                 }
@@ -99,7 +99,7 @@ const UpdateDetails = () => {
                 toast.error("Please add state", { autoClose: 500, theme: 'colored' })
             }
             else {
-                const { data } = await axios.put(`${process.env.REACT_APP_BASE_URL}/api/authuser/updateuser`, {
+                const { data } = await axios.put(`${process.env.REACT_APP_BASE_URL}/api/authAdmin/updateUser`, {
                     userDetails: JSON.stringify(userDetails)
                 },
                     {

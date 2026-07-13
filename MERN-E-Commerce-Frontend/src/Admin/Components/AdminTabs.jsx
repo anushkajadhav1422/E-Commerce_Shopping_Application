@@ -65,7 +65,7 @@ export default function BasicTabs({ user, setUser, getUser }) {
     
     const getProductInfo = async () => {
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/admin/chartdata`, {
+            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/authAdmin/chartdata`, {
                 headers: {
                     'Authorization': `Bearer ${authToken}`
                 }

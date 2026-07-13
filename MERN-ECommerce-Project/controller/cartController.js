@@ -1,10 +1,10 @@
-const express = require("express");
-const router = express.Router();
+const express = require('express');
 const Cart = require("../models/Cart");
 const authUser = require("../middleware/authUser");
+const router = express.Router();
 
 // get all cart products
-router.get("/fetchcart", authUser, async (req, res) => {
+const getAllCartProducts = async (req, res) => {
     try {
         const cart = await Cart.find({ user: req.user.id })
             .populate("productId", "name price image rating type")
@@ -13,11 +13,11 @@ router.get("/fetchcart", authUser, async (req, res) => {
     } catch (error) {
         res.status(500).send("Internal server error");
     }
-});
+}
 
 // add to cart
 
-router.post("/addcart", authUser, async (req, res) => {
+const addCarts = async (req, res) => {
     try {
         const { _id, quantity } = req.body;
         const findProduct = await Cart.findOne({ $and: [{ productId: _id }, { user: req.user.id }] })
@@ -38,10 +38,10 @@ router.post("/addcart", authUser, async (req, res) => {
     } catch (error) {
         res.status(500).send("Internal server error");
     }
-});
+}
 
 // remove from cart
-router.delete("/deletecart/:id", authUser, async (req, res) => {
+const deleteCarts = async (req, res) => {
     const { id } = req.params;
     try {
         const result = await Cart.findByIdAndDelete(id)
@@ -51,5 +51,10 @@ router.delete("/deletecart/:id", authUser, async (req, res) => {
     } catch (error) {
         res.status(500).send("Internal server error");
     }
-});
-module.exports = router;
+}
+
+
+
+module.exports = {
+getAllCartProducts,addCarts,deleteCarts
+}

@@ -1,9 +1,10 @@
 const express = require('express');
-const router = express.Router();
 const Review = require('../models/Review')
 const authUser = require('../middleware/authUser')
+const router = express.Router();
 
-router.post('/fetchreview/:id', async (req, res) => {
+
+const fetchReviewById = async (req, res) => {
     const { filterType } = req.body
     try {
         if (filterType === 'all') {
@@ -35,9 +36,9 @@ router.post('/fetchreview/:id', async (req, res) => {
     catch (error) {
         res.status(500).send("Internal server error")
     }
-})
+}
 
-router.post('/addreview', authUser, async (req, res) => {
+const addReview = async (req, res) => {
     try {
         const { id, comment, rating } = req.body
         const user = req.header
@@ -54,11 +55,11 @@ router.post('/addreview', authUser, async (req, res) => {
     catch (error) {
         res.status(500).send("Something went wrong")
     }
-})
+}
 
 
 
-router.delete('/deletereview/:id', authUser, async (req, res) => {
+const deleteReview = async (req, res) => {
     const { id } = req.params
     try {
         let deleteReview = await Review.deleteOne({ $and: [{ user: req.user.id }, { _id: id }] })
@@ -67,11 +68,11 @@ router.delete('/deletereview/:id', authUser, async (req, res) => {
         res.send({ msg: "Something went wrong,Please try again letter" })
     }
 
-})
+}
 
 
 
-router.put('/editreview', authUser, async (req, res) => {
+const editReview = async (req, res) => {
     const { id, comment, rating } = req.body
 
     const review = await Review.findById(id)
@@ -87,5 +88,8 @@ router.put('/editreview', authUser, async (req, res) => {
     } catch (error) {
         res.send("Something went wrong")
     }
-})
-module.exports = router
+}
+
+module.exports = {
+   fetchReviewById,addReview,deleteReview,editReview
+}

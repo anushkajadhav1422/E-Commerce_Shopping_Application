@@ -52,7 +52,7 @@ const AddProduct = ({ getProductInfo, data }) => {
             }
 
             const { data } = await axios.post(
-                `${process.env.REACT_APP_BASE_URL}/api/admin/addproduct`,
+                `${process.env.REACT_APP_BASE_URL}/api/authAdmin/addproduct`,
                 {
                     name: productInfo.name,
                     brand: productInfo.brand,

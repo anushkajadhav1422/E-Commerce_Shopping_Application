@@ -230,10 +230,43 @@ const deleteProduct = async (req, res) => {
     }
 }
 
+// update user details
+const updateUser = async (req, res) => {
+    const { userDetails } = req.body
+    let convertData = JSON.parse(userDetails)
+    try {
+        const user = await User.findById(req.user.id)
+        if (user) {
+            let updateDetails = await User.findByIdAndUpdate(req.user.id, { $set: convertData })
+            success = true
+            res.status(200).send({ success })
+        }
+        else {
+            return res.status(400).send("User Not Found")
+        }
+    } catch (error) {
+        res.send("Something went wrong")
+    }
+}
+
+const getUser = async (req, res) => {
+
+    try {
+        const user = await User.findById(req.user.id).select("-password")
+        success = true
+        res.send(user)
+
+    } catch (error) {
+        res.status(400).send("Something went wrong")
+    }
+}
+
+
 module.exports = {
     getAllUsersInfo, getSingleUserInfo,
     getUserCart, getUserWishlist,
     getUserReview, deleteUserReview,
     deleteUserCartItem, deleteUserWishlistItem,
-    updateProductDetails, userPaymentDetails, addProduct, deleteProduct
+    updateProductDetails, userPaymentDetails, addProduct, deleteProduct,
+    updateUser,getUser
 }

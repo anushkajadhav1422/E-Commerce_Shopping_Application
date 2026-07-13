@@ -46,7 +46,7 @@ const AdminLogin = () => {
 
     try {
       const { data } = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/admin/login`,
+        `${process.env.REACT_APP_BASE_URL}/api/authAdmin/login`,
         credentials
       )
 

@@ -1,10 +1,10 @@
 const express = require('express');
+const Wishlist = require("../models/Wishlist");
+const authUser = require("../middleware/authUser");
 const router = express.Router();
-const Wishlist = require('../models/Wishlist')
-const authUser = require('../middleware/authUser')
 
 
-router.get('/fetchwishlist', authUser, async (req, res) => {
+const getwishlist = async (req, res) => {
     try {
         const wishlistData = await Wishlist.find({ user: req.user.id }).populate("productId")
         res.send(wishlistData)
@@ -12,8 +12,9 @@ router.get('/fetchwishlist', authUser, async (req, res) => {
     catch (error) {
         res.status(500).send("Something went wrong")
     }
-})
-router.post('/addwishlist', authUser, async (req, res) => {
+}
+
+const addwishlist = async (req, res) => {
 
     try {
         const { _id } = req.body
@@ -31,8 +32,9 @@ router.post('/addwishlist', authUser, async (req, res) => {
     catch (error) {
         res.status(500).send("Something went wrong")
     }
-})
-router.delete('/deletewishlist/:id', authUser, async (req, res) => {
+}
+
+const deleteWishlist = async (req, res) => {
     const { id } = req.params;
     try {
         const result = await Wishlist.findByIdAndDelete(id)
@@ -43,5 +45,9 @@ router.delete('/deletewishlist/:id', authUser, async (req, res) => {
 
 
 
-})
-module.exports = router
+}
+
+
+module.exports = {
+    getwishlist,addwishlist,deleteWishlist
+}

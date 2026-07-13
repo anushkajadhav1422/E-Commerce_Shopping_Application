@@ -46,10 +46,11 @@ const Login = () => {
       else if (credentials.email && credentials.password) {
         const sendAuth = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/authUser/login`, { email: credentials.email, password: credentials.password })
         console.log(sendAuth.data);
-        const receive = await sendAuth.data
+        const receive = sendAuth.data
         if (receive.success === true) {
           toast.success("Login Successfully", { autoClose: 500, theme: 'colored' })
-          localStorage.setItem('Authorization', receive.authToken)
+          console.log(sendAuth.data);
+          localStorage.setItem('Authorization', receive.token)
           console.log("Stored Token:", localStorage.getItem("Authorization"));
           navigate('/')
         }

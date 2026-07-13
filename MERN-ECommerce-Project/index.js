@@ -4,15 +4,14 @@ const express = require('express')
 const cors = require('cors')
 const path = require('path');
 
-const authUser = require('./routes/authRoute');
-const cart = require('./routes/cart')
-const wishlist = require('./routes/wishlist')
-const product = require('./routes/product')
-const review = require('./routes/review')
+const authUser = require('./routes/authUserRoute');
+const cart = require('./routes/cartRoute')
+const wishlist = require('./routes/wishlistRoute')
+const product = require('./routes/productRoute')
+const review = require('./routes/reviewRoute')
 const paymentRoute = require('./routes/paymentRoute')
 const forgotPassword = require('./routes/forgotPassword')
-const AdminRoute = require('./routes/adminRoute')
-const authAdmin = require('./routes/auth')
+const authAdmin = require('./routes/authAdminRoutes')
 const dotenv = require('dotenv');
 dotenv.config()
 
@@ -51,7 +50,6 @@ app.use('/api/wishlist', wishlist)
 
 app.use('/api/review', review)
 
-app.use('/api/admin', AdminRoute)
 
 app.use('/api', paymentRoute)
 

@@ -20,6 +20,7 @@ const AddUser = ({ getUser }) => {
         setOpen(false);
     };
     const handleSubmit = async (e) => {
+        
         e.preventDefault()
         let phoneRegex = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/gm;
         let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -40,7 +41,7 @@ const AddUser = ({ getUser }) => {
                 toast.error("Please enter password with more than 5 characters", { autoClose: 500, theme: 'colored' })
             }
             else if (credentials.email && credentials.firstName && credentials.lastName && credentials.phoneNumber && credentials.password) {
-                const sendAuth = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/admin/register`,
+                const sendAuth = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/authAdmin/register`,
                     {
                         firstName: credentials.firstName,
                         lastName: credentials.lastName,
@@ -48,6 +49,7 @@ const AddUser = ({ getUser }) => {
                         phoneNumber: credentials.phoneNumber,
                         password: credentials.password,
                     })
+                    console.log("Hii")
                     console.log(sendAuth);
                     
                 const receive = await sendAuth.data

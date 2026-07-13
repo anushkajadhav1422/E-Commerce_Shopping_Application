@@ -16,7 +16,7 @@ const AdminHomePage = () => {
     let authToken = localStorage.getItem("Authorization")
     const getUser = async () => {
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/admin/getusers`, {
+            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/authAdmin/getusers`, {
                 headers: {
                     'Authorization': `Bearer ${authToken}`
                 }
