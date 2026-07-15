@@ -1,5 +1,5 @@
-const nodemailer = require("nodemailer");
 console.log("reading mail.js file");
+const nodemailer = require("nodemailer");
 
 
 const transporter = nodemailer.createTransport({
