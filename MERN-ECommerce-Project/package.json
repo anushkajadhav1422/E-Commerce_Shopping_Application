@@ -24,6 +24,7 @@
     "mongoose": "^6.10.4",
     "nodemailer": "^6.9.1",
     "nodemon": "^2.0.20",
-    "razorpay": "^2.8.4"
+    "razorpay": "^2.8.4",
+    "resend": "^6.17.2"
   }
 }

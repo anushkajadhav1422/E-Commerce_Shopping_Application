@@ -1,42 +1,37 @@
-const nodeMailer = require("nodemailer");
-const transporter = require("./mail");
+const resend = require("./resend");
 
 const sendEmail = async ({
   email,
   subject,
   message,
-  attachments = [],
 }) => {
   try {
-    const mailOptions = {
-      from: `"Shop It" <${process.env.SMPT_MAIL}>`,
+
+    const response = await resend.emails.send({
+      from: "onboarding@resend.dev",
       to: email,
-      subject,
+      subject: subject,
       html: message,
-      attachments,
-    };
+    });
 
-    const info = await transporter.sendMail(mailOptions);
-
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     console.log("📧 Email Sent Successfully");
-    console.log("To        :", email);
-    console.log("Subject   :", subject);
-    console.log("Message ID:", info.messageId);
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    console.log("To:", email);
+    console.log("Subject:", subject);
+    console.log(response);
+    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
-    return info;
+    return response;
+
   } catch (error) {
-    console.error("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+
+    console.error("━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     console.error("❌ Email Sending Failed");
-    console.error("To      :", email);
-    console.error("Subject :", subject);
     console.error(error);
-    console.error("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    console.error("━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
     throw error;
   }
 };
 
 module.exports = sendEmail;
-
