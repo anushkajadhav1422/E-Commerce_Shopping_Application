@@ -613,7 +613,7 @@ exports.forgotPassword = async (req, res) => {
     await user.save({ validateBeforeSave: false });
 
     // Frontend URL
-    const resetUrl = `${process.env.FRONTEND_URL}/resetPassword/${resetToken}`;
+    const resetUrl = `${process.env.FRONTEND_URL}resetPassword/${resetToken}`;
 
     // Email Template
     const message = `
