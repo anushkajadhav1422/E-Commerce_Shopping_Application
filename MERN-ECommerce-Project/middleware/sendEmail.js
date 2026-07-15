@@ -1,4 +1,4 @@
-const resend = require("./resend");
+const resend = require("./resendConfig");
 
 const sendEmail = async ({
   email,
