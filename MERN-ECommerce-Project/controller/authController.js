@@ -240,6 +240,8 @@ Thank you for shopping with us ❤️
 `,
     });
 
+    console.log("Reached success response");
+
     // Don't generate JWT here
 
     return res.status(201).json({
