@@ -1,9 +1,11 @@
+
 const jwt = require("jsonwebtoken");
 const dotenv = require('dotenv');
 const User = require('../models/User')
 dotenv.config()
 
 const checkAdmin = async (req, res, next) => {
+    console.log("hello");
     const authHeader = req.header('Authorization');
 
     if (!authHeader) {
@@ -12,10 +14,14 @@ const checkAdmin = async (req, res, next) => {
 
     // 🔥 THIS LINE IS THE FIX
     const token = authHeader.split(" ")[1];
+    console.log(token);
+    
 
     try {
         const data = jwt.verify(token, process.env.JWT_SECRET);
         req.user = data.user;
+        console.log(data);
+        
 
         if (req.user.role !== "admin") {
             return res.status(403).send("Only admin can access");

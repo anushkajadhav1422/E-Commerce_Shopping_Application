@@ -40,7 +40,7 @@ const Cart = () => {
     useEffect(() => {
         if (setProceed) {
             getCart()
-            getPreviousOrder()
+            // getPreviousOrder()
         }
         else {
             setOpenAlert(true)
@@ -75,15 +75,15 @@ const Cart = () => {
     const handleToLogin = () => {
         navigate('/login')
     };
-    const getPreviousOrder = async () => {
-        const { data } = await axios.get(`${process.env.REACT_APP_GET_PREVIOUS_ORDER}`,
-            {
-                headers: {
-                    Authorization: `Bearer ${authToken}`
-                }
-            })
-        setPreviousOrder(data)
-    }
+    // const getPreviousOrder = async () => {
+    //     const { data } = await axios.get(`${process.env.REACT_APP_GET_PREVIOUS_ORDER}`,
+    //         {
+    //             headers: {
+    //                 Authorization: `Bearer ${authToken}`
+    //             }
+    //         })
+    //     setPreviousOrder(data)
+    // }
 
     const removeFromCart = async (product) => {
         if (setProceed) {

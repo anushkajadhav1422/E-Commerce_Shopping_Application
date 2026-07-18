@@ -197,6 +197,8 @@ const addProduct = async (req, res) => {
             description,
             gender
         });
+        console.log(product);
+        
 
         res.status(201).json({
             success: true,
