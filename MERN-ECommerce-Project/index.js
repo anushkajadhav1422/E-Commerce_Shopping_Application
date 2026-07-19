@@ -4,14 +4,14 @@ const express = require('express')
 const cors = require('cors')
 const path = require('path');
 
-const authUser = require('./routes/authUserRoute');
+const authUseRoute = require('./routes/authUserRoute');
 const cart = require('./routes/cartRoute')
 const wishlist = require('./routes/wishlistRoute')
 const product = require('./routes/productRoute')
 const review = require('./routes/reviewRoute')
 const paymentRoute = require('./routes/paymentRoute')
 const forgotPassword = require('./routes/forgotPassword')
-const authAdmin = require('./routes/authAdminRoutes')
+const authAdmiRoute = require('./routes/authAdminRoutes')
 const dotenv = require('dotenv');
 dotenv.config()
 
@@ -38,9 +38,9 @@ app.use(express.static(path.join(__dirname, 'build')));
 // });
 
 
-app.use('/api/authUser', authUser)
+app.use('/api/authUser', authUseRoute)
 
-app.use('/api/authAdmin', authAdmin)
+app.use('/api/authAdmin', authAdmiRoute)
 
 app.use('/api/product', product)
 

@@ -26,7 +26,7 @@ const fetchUser = (req, res, next) => {
 
         // ✅ FIX 2: Handle BOTH token formats
         if (data.user) {
-            req.user = data.user;
+            req.user = data;
         } else {
             req.user = { id: data.id };
         }

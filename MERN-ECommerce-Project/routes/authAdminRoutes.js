@@ -16,7 +16,7 @@ router.get('/getuser/:userId', authAdmin, getSingleUserInfo);
 router.post('/addproduct', authAdmin, addProduct);
 router.get('/chartdata', authAdmin, chartData);
 router.put('/updateUser', authUser, updateUser);
-router.get('/getuser', authAdmin, getUser);
+router.get('/getuser', authUser, getUser);
 
 
 module.exports = router;
