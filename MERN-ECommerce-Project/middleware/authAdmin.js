@@ -5,12 +5,14 @@ const User = require('../models/User')
 dotenv.config()
 
 const checkAdmin = async (req, res, next) => {
-    console.log("hello");
     const authHeader = req.header('Authorization');
-
+    
+    
     if (!authHeader) {
         return res.status(401).send("Access denied");
     }
+    console.log("hello");
+    console.log(authHeader);
 
     // 🔥 THIS LINE IS THE FIX
     const token = authHeader.split(" ")[1];

@@ -46,9 +46,9 @@ const CheckoutForm = () => {
     })
     const getUserData = async () => {
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_GET_USER_DETAILS}`, {
+            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/authAdmin/getuser`, {
                 headers: {
-                    'Authorization': authToken
+                    Authorization: `Bearer ${authToken}`
                 }
             })
             setUserData(data);

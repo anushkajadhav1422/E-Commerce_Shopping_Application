@@ -1,6 +1,6 @@
 const express = require('express');
 const { registerAdminApi, loginAdminApi,} = require('../controller/authAdmin');
-const { getAllUsersInfo, getSingleUserInfo,addProduct,updateUser, getUser } = require('../controller/AdminControl');
+const { getAllUsersInfo, getSingleUserInfo,addProduct,updateUser, getUser,addUser } = require('../controller/AdminControl');
 const { chartData } = require('../controller/AllProductInfo');
 const { isAuthenticatedUser, authorizedRole } = require('../middleware/authMiddleware');
 const authAdmin = require('../middleware/authAdmin');
@@ -17,6 +17,8 @@ router.post('/addproduct', authAdmin, addProduct);
 router.get('/chartdata', authAdmin, chartData);
 router.put('/updateUser', authUser, updateUser);
 router.get('/getuser', authUser, getUser);
+router.post('/adduser', authAdmin, addUser);
+
 
 
 module.exports = router;

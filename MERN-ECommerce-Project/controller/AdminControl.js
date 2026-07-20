@@ -4,6 +4,7 @@ const Wishlist = require("../models/Wishlist");
 const Review = require("../models/Review");
 const Product = require("../models/Product");
 const Payment = require("../models/Payment");
+const bcrypt = require("bcrypt");
 let success = false;
 const getAllUsersInfo = async (req, res) => {
     try {
@@ -263,6 +264,52 @@ const getUser = async (req, res) => {
     }
 }
 
+const addUser = async (req, res) => {
+    try {
+        const {
+            firstName,
+            lastName,
+            email,
+            phoneNumber,
+            password
+        } = req.body;
+
+        const existingUser = await User.findOne({ email });
+
+        if (existingUser) {
+            return res.status(400).json({
+                success: false,
+                message: "User already exists"
+            });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const user = await User.create({
+            firstName,
+            lastName,
+            email,
+            phoneNumber,
+            password: hashedPassword,
+            role: "user",
+            isAdmin: false,
+            isVerified: true
+        });
+
+        res.status(201).json({
+            success: true,
+            message: "User created successfully",
+            user
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
 
 module.exports = {
     getAllUsersInfo, getSingleUserInfo,
@@ -270,5 +317,5 @@ module.exports = {
     getUserReview, deleteUserReview,
     deleteUserCartItem, deleteUserWishlistItem,
     updateProductDetails, userPaymentDetails, addProduct, deleteProduct,
-    updateUser,getUser
+    updateUser,getUser,addUser
 }
