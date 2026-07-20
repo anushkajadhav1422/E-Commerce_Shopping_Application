@@ -12,6 +12,7 @@ const AddUser = ({ getUser }) => {
     const handleOnChange = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
+    const token = localStorage.getItem("Authorization");
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -20,7 +21,7 @@ const AddUser = ({ getUser }) => {
         setOpen(false);
     };
     const handleSubmit = async (e) => {
-        
+
         e.preventDefault()
         let phoneRegex = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/gm;
         let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -48,10 +49,15 @@ const AddUser = ({ getUser }) => {
                         email: credentials.email,
                         phoneNumber: credentials.phoneNumber,
                         password: credentials.password,
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
                     })
-                    console.log("Hii")
-                    console.log(sendAuth);
-                    
+                console.log("Hii")
+                console.log(sendAuth);
+
                 const receive = await sendAuth.data
                 setOpen(false);
                 if (receive.success === true) {
