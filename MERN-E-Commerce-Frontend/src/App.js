@@ -24,7 +24,7 @@ import SingleUserPage from './Admin/Pages/SingleUserPage';
 import SingleProduct from './Admin/Pages/SingleProduct';
 import AdminProtectedRoute from "./Navigation/AdminProtectRoute";
 import ResetPassword from "./Auth/ResetPassword/ResetPassword";
-
+import RoleSelection from './Pages/roleSeletion';
 
 
 
@@ -40,7 +40,8 @@ function App() {
         <div className='margin'>
           <Routes>
             {/*User Routes  */}
-            <Route path='/' index element={<HomePage />} />
+            <Route path='/' index element={<RoleSelection />} />
+            <Route path='/home' index element={<HomePage />} />
             <Route path="/login" element={< Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/verify' element={<VerifyOtp />} />
@@ -63,6 +64,8 @@ function App() {
             <Route path='/admin/home' element={<AdminHomePage />} />
             <Route path='/admin/home/user/:id' element={<SingleUserPage />} />
             <Route path='/admin/home/product/:type/:id' element={<SingleProduct />} />
+            <Route path="/role" element={<RoleSelection />} />
+
             <Route
               path="/admin/home"
               element={

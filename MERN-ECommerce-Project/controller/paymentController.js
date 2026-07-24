@@ -11,10 +11,14 @@ let productInfo = {};
 let userData = {};
 let userInfo;
 let totalAmount;
-// const instance = new Razorpay({
-//   key_id: process.env.RAZORPAY_API_KEY,
-//   key_secret: process.env.RAZORPAY_API_SECRET,
-// });
+const instance = new Razorpay({
+  key_id: process.env.RAZORPAY_API_KEY,
+  key_secret: process.env.RAZORPAY_API_SECRET,
+});
+
+console.log(process.env.RAZORPAY_API_KEY);
+console.log(process.env.RAZORPAY_API_SECRET);
+
 const checkout = async (req, res) => {
 
   try {

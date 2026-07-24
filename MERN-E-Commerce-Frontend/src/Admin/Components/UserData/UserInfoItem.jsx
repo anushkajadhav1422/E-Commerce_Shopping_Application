@@ -12,7 +12,7 @@ const UserInfoItem = ({ commonGetRequest, id, authToken }) => {
 
     let navigate = useNavigate()
     useEffect(() => {
-        commonGetRequest(`${process.env.REACT_APP_BASE_URL}/api/admin/getuser`, id, setUserData);
+        commonGetRequest(`${process.env.REACT_APP_BASE_URL}/api/authAdmin/getuser`, id, setUserData);
         window.scroll(0, 0)
 
     }, [])

@@ -27,7 +27,7 @@ const Login = () => {
   useEffect(() => {
     let auth = localStorage.getItem('Authorization');
     if (auth) {
-      navigate("/")
+      navigate("/home")
     }
   }, [])
   const handleSubmit = async (e) => {
@@ -52,7 +52,7 @@ const Login = () => {
           console.log(sendAuth.data);
           localStorage.setItem('Authorization', receive.token)
           console.log("Stored Token:", localStorage.getItem("Authorization"));
-          navigate('/')
+          navigate('/home')
         }
         else{
           toast.error("Something went wrong, Please try again", { autoClose: 500, theme: 'colored' })
