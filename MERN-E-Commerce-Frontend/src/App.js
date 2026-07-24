@@ -64,7 +64,7 @@ function App() {
             <Route path='/admin/home' element={<AdminHomePage />} />
             <Route path='/admin/home/user/:id' element={<SingleUserPage />} />
             <Route path='/admin/home/product/:type/:id' element={<SingleProduct />} />
-            <Route path="/role" element={<RoleSelection />} />
+            {/* <Route path="/role" element={<RoleSelection />} /> */}
 
             <Route
               path="/admin/home"
