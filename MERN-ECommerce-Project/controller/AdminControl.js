@@ -133,7 +133,7 @@ const updateProductDetails = async (req, res) => {
         try {
             let update = await Product.findByIdAndUpdate(id, { $set: updateProduct })
             success = true
-            const findType = await Product.find({ type: "book" }).distinct('category')
+            const findType = await Product.find({ type: "shoes" }).distinct('category')
 
             res.send({ success, msg: "Product updated successfully", findType })
 

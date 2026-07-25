@@ -83,9 +83,9 @@ const SingleProduct = () => {
         else {
             setError(false)
             try {
-                const { data } = await axios.put(`${process.env.REACT_APP_ADMIN_UPDATE_PRODUCT}/${product._id}`, { productDetails: productInfo }, {
+                const { data } = await axios.put(`${process.env.REACT_APP_BASE_URL}/api/admincontrol/updateproduct/${product._id}`, { productDetails: productInfo }, {
                     headers: {
-                        'Authorization': authToken
+                        'Authorization': `Bearer ${authToken}`
                     }
                 })
                 if (data.success) {
@@ -104,9 +104,9 @@ const SingleProduct = () => {
     }
     const deleteProduct = async () => {
         try {
-            const { data } = await axios.delete(`${process.env.REACT_APP_ADMIN_DELETE_PRODUCT}/${product._id}`, {
+            const { data } = await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admincontrol/deleteproduct/${product._id}`, {
                 headers: {
-                    'Authorization': authToken
+                    'Authorization': `Bearer ${authToken}`
                 }
             });
             console.log(data);
