@@ -33,7 +33,7 @@ const SingleProduct = () => {
         window.scroll(0, 0)
     }, [])
     const getSingleProduct = async () => {
-        const { data } = await axios.get(`${process.env.REACT_APP_FETCH_PRODUCT}/${id}`)
+        const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/product/fetchproduct/${id}`)
         productInfo.name = data.name
         productInfo.image = data.image
         productInfo.price = data.price
