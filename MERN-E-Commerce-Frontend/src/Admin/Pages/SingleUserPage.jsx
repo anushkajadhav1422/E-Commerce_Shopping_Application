@@ -6,7 +6,7 @@ import UserWishlistItem from '../Components/UserData/UserWishlistItem';
 import UserReviewItem from '../Components/UserData/UserReviewItem';
 import { useParams } from 'react-router-dom';
 import { Container } from '@mui/material';
-import UserOrderItem from '../Components/UserData/UserOrderItem';
+// import UserOrderItem from '../Components/UserData/UserOrderItem';
 import CopyRight from '../../Components/CopyRight/CopyRight';
 
 const SingleUserPage = () => {
@@ -34,7 +34,7 @@ const SingleUserPage = () => {
         <>
             <Container>
                 <UserInfoItem commonGetRequest={commonGetRequest} authToken={authToken} id={id} url={BASE_URL} />
-                <UserOrderItem commonGetRequest={commonGetRequest} authToken={authToken} id={id} url={BASE_URL} />
+                {/* <UserOrderItem commonGetRequest={commonGetRequest} authToken={authToken} id={id} url={BASE_URL} /> */}
                 <UserCartItem commonGetRequest={commonGetRequest} authToken={authToken} id={id} url={BASE_URL} />
                 <UserWishlistItem commonGetRequest={commonGetRequest} authToken={authToken} id={id} url={BASE_URL} />
                 <UserReviewItem commonGetRequest={commonGetRequest} authToken={authToken} id={id} url={BASE_URL} />

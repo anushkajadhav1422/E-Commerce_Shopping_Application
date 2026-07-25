@@ -8,7 +8,7 @@ const UserReviewItem = ({ commonGetRequest, id }) => {
     const [userReview, setUserReview] = useState([]);
 
     useEffect(() => {
-        commonGetRequest(process.env.REACT_APP_ADMIN_GET_REVIEW, id, setUserReview);
+        commonGetRequest(`${process.env.REACT_APP_BASE_URL}/api/admincontrol/getreview`, id, setUserReview);
     }, [])
     return (
         <>
