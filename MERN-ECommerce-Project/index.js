@@ -12,6 +12,7 @@ const review = require('./routes/reviewRoute')
 const paymentRoute = require('./routes/paymentRoute')
 const forgotPassword = require('./routes/forgotPassword')
 const authAdmiRoute = require('./routes/authAdminRoutes')
+const authAdminControlRoute = require('./routes/Admin/AdminAuth')
 const dotenv = require('dotenv');
 dotenv.config()
 
@@ -41,6 +42,8 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use('/api/authUser', authUseRoute)
 
 app.use('/api/authAdmin', authAdmiRoute)
+
+app.use('/api/admincontrol', authAdminControlRoute)
 
 app.use('/api/product', product)
 

@@ -14,7 +14,7 @@ const SingleUserPage = () => {
     let authToken = localStorage.getItem("Authorization")
 
     // ✅ Added correct BASE URL here
-    const BASE_URL = "http://localhost:5000/api/admin/getuser";
+    const BASE_URL = "http://localhost:5000/api/authAdmin/getuser";
 
     const commonGetRequest = async (url, userId, setData) => {
         try {
@@ -23,7 +23,7 @@ const SingleUserPage = () => {
                     'Authorization': `Bearer ${authToken}`
                 }
             });
-            console.log(data);
+            console.log("I am data: ",data);
             setData(data)
         } catch (error) {
             console.log(error);

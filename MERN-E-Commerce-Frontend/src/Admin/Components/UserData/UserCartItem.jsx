@@ -29,8 +29,12 @@ const UserCartItem = ({ commonGetRequest, id, authToken }) => {
         }
     }
     useEffect(() => {
-        commonGetRequest(process.env.REACT_APP_ADMIN_GET_CART, id, setUserCart);
-    }, [])
+        commonGetRequest(
+            `${process.env.REACT_APP_BASE_URL}/api/admincontrol/getcart`,
+            id,
+            setUserCart
+        );
+    }, [id]);
     return (
         <>
             <Typography variant='h6' fontWeight="bold" sx={{ margin: '20px 0', textAlign: 'center' }}>User Cart</Typography>
