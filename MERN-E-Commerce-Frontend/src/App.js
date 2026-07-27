@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import React, { useLocation } from 'react'
 import HomePage from './Pages/Home/HomePage';
 import Login from './Auth/Login/Login';
 import Register from './Auth/Register/Register';
