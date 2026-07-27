@@ -1,7 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import React from 'react'
-import { useLocation } from 'react-router-dom'
+import React, { useLocation } from 'react'
 import HomePage from './Pages/Home/HomePage';
 import Login from './Auth/Login/Login';
 import Register from './Auth/Register/Register';
@@ -35,22 +34,12 @@ import RoleSelection from './Pages/roleSeletion';
 
 function App() {
 
-   const location = useLocation();
-    const hideNavbarRoutes = [
-    "/login",
-    "/register",
-    "/role-selection",
-    "/admin/login"
-  ];
-
-  const showNavbar = !hideNavbarRoutes.includes(location.pathname);
-
 
   return (
     <>
       <ToastContainer toastClassName='toastContainerBox' transition={Flip} position='top-center' />
       <Router>
-        {showNavbar && <DesktopNavigation />}
+       <DesktopNavigation />
         <div className='margin'>
           <Routes>
             {/*User Routes  */}
