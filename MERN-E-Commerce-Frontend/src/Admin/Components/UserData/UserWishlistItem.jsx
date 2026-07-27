@@ -14,7 +14,7 @@ const UserWishlistItem = ({ authToken, id, commonGetRequest }) => {
     const removeCartItemByAdmin = async (product) => {
         try {
             console.log(product._id);
-            const { data } = await axios.delete(`${process.env.REACT_APP_ADMIN_DELETE_WISHLIST}/${product._id}`, {
+            const { data } = await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admincontrol/userwishlist/${product._id}`, {
                 headers: {
                     'Authorization': authToken
                 }
