@@ -19,9 +19,9 @@ const UserInfoItem = ({ commonGetRequest, id, authToken }) => {
 
     const deleteAccount = async () => {
         try {
-            const deleteUser = await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin/deleteuser/${userData._id}`, {
+            const deleteUser = await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/authAdmin/deleteUser/${userData._id}`, {
                 headers: {
-                    'Authorization': authToken
+                    Authorization: `Bearer ${authToken}`
                 }
             });
             toast.success("Account deleted successfully", { autoClose: 500, theme: 'colored' })

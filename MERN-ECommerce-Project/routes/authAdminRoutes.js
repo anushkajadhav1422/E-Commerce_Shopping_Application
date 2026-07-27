@@ -18,6 +18,7 @@ router.get('/chartdata', authAdmin, chartData);
 router.put('/updateUser', authUser, updateUser);
 router.get('/getuser', authUser, getUser);
 router.post('/adduser', authAdmin, addUser);
+router.delete('/deleteUser/:userId', authAdmin, deleteAllUserData);
 
 
 
