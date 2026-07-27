@@ -32,11 +32,23 @@ import RoleSelection from './Pages/roleSeletion';
 
 
 function App() {
+
+   const location = useLocation();
+    const hideNavbarRoutes = [
+    "/login",
+    "/register",
+    "/role-selection",
+    "/admin/login"
+  ];
+
+  const showNavbar = !hideNavbarRoutes.includes(location.pathname);
+
+
   return (
     <>
       <ToastContainer toastClassName='toastContainerBox' transition={Flip} position='top-center' />
       <Router>
-        <DesktopNavigation />
+        {showNavbar && <DesktopNavigation />}
         <div className='margin'>
           <Routes>
             {/*User Routes  */}
