@@ -26,14 +26,14 @@ const DesktopNavigation = () => {
     <>
       <nav className='nav'>
         <div className="logo">
-          <Link to='/'>
+          <Link to='/home'>
             <span >Shop It</span>
           </Link>
         </div>
         <div className="nav-items">
           <ul className="nav-items">
             <li className="nav-links">
-              <NavLink to='/'>
+              <NavLink to='/home'>
                 <span className='nav-icon-span'>  Home</span>
               </NavLink>
             </li>
