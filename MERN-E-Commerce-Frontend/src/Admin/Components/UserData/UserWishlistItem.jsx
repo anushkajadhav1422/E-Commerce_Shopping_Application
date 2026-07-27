@@ -16,7 +16,7 @@ const UserWishlistItem = ({ authToken, id, commonGetRequest }) => {
             console.log(product._id);
             const { data } = await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admincontrol/userwishlist/${product._id}`, {
                 headers: {
-                    'Authorization': authToken
+                    'Authorization': `Bearer ${authToken}`
                 }
             });
             if (data.success === true) {
