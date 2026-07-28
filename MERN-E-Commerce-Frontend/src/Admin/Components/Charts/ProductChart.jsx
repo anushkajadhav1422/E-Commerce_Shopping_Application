@@ -18,23 +18,23 @@ const ProductChart = ({ products, review, cart, wishlist, paymentData }) => {
     const productData = [
         {
             name: "Cloths",
-            Quantity: products.filter(prod => prod.type === "cloths").length
+            Quantity: products.filter(prod => prod?.type === "cloths").length
         },
         {
             name: "Shoes",
-            Quantity: products.filter(prod => prod.type === "shoe").length
+            Quantity: products.filter(prod => prod?.type === "shoe").length
         },
         {
             name: "Electronics",
-            Quantity: products.filter(prod => prod.type === "electronics").length
+            Quantity: products.filter(prod => prod?.type === "electronics").length
         },
         {
             name: "Books",
-            Quantity: products.filter(prod => prod.type === "book").length
+            Quantity: products.filter(prod => prod?.type === "book").length
         },
         {
             name: "Jewelry",
-            Quantity: products.filter(prod => prod.type === "jewelry").length
+            Quantity: products.filter(prod => prod?.type === "jewelry").length
         },
     ];
     const reviewData = [
@@ -63,46 +63,46 @@ const ProductChart = ({ products, review, cart, wishlist, paymentData }) => {
     const cartData = [
         {
             name: "Cloths",
-            "Quantity in cart": cart.filter(prod => prod.productId.type === "cloths").length
+            "Quantity in cart": cart.filter(prod => prod.productId?.type === "cloths").length
         },
         {
             name: "Shoes",
-            "Quantity in cart": cart.filter(prod => prod.productId.type === "shoe").length
+            "Quantity in cart": cart.filter(prod => prod.productId?.type === "shoe").length
         },
         {
             name: "Electronics",
-            "Quantity in cart": cart.filter(prod => prod.productId.type === "electronics").length
+            "Quantity in cart": cart.filter(prod => prod.productId?.type === "electronics").length
         },
         {
             name: "Books",
-            "Quantity in cart": cart.filter(prod => prod.productId.type === "book").length
+            "Quantity in cart": cart.filter(prod => prod.productId?.type === "book").length
         },
         {
             name: "Jewelry",
-            "Quantity in cart": cart.filter(prod => prod.productId.type === "jewelry").length
+            "Quantity in cart": cart.filter(prod => prod.productId?.type === "jewelry").length
         },
     ];
 
     const wishlistData = [
         {
             name: "Cloths",
-            "Quantity in wishlist": wishlist.filter(prod => prod.productId.type === "cloths").length
+            "Quantity in wishlist": wishlist.filter(prod => prod.productId?.type === "cloths").length
         },
         {
             name: "Shoes",
-            "Quantity in wishlist": wishlist.filter(prod => prod.productId.type === "shoe").length
+            "Quantity in wishlist": wishlist.filter(prod => prod.productId?.type === "shoe").length
         },
         {
             name: "Electronics",
-            "Quantity in wishlist": wishlist.filter(prod => prod.productId.type === "electronics").length
+            "Quantity in wishlist": wishlist.filter(prod => prod.productId?.type === "electronics").length
         },
         {
             name: "Books",
-            "Quantity in wishlist": wishlist.filter(prod => prod.productId.type === "book").length
+            "Quantity in wishlist": wishlist.filter(prod => prod.productId?.type === "book").length
         },
         {
             name: "Jewelry",
-            "Quantity in wishlist": wishlist.filter(prod => prod.productId.type === "jewelry").length
+            "Quantity in wishlist": wishlist.filter(prod => prod.productId?.type === "jewelry").length
         },
     ];
 

@@ -218,20 +218,31 @@ const addProduct = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
     const { id } = req.params;
-    let findProduct = await Product.findById(id);
-    if (findProduct) {
-        try {
-            await Product.findByIdAndDelete(id)
-            success = true
-            res.send(success)
-        } catch (error) {
-            return res.status(400).send(error)
+
+    try {
+        const findProduct = await Product.findById(id);
+
+        if (!findProduct) {
+            return res.status(404).send({
+                success: false,
+                msg: "Product not found"
+            });
         }
+
+        await Product.findByIdAndDelete(id);
+
+        await Cart.deleteMany({ productId: id });
+        await Wishlist.deleteMany({ productId: id });
+        await Review.deleteMany({ productId: id });
+
+        res.send({
+            success: true
+        });
+
+    } catch (error) {
+        res.status(500).send(error);
     }
-    else {
-        return res.status(400).send({ success, msg: "Product Not Found" })
-    }
-}
+};
 
 // update user details
 const updateUser = async (req, res) => {

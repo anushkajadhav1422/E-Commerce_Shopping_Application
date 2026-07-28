@@ -8,8 +8,11 @@ const Product = require("../models/Product")
 
 const chartData = async (req, res) => {
     try {
-        const cart = await Cart.find().populate("productId");
-        const wishlist = await Wishlist.find().populate("productId");
+         const cart = (await Cart.find().populate("productId"))
+            .filter(item => item.productId);
+
+        const wishlist = (await Wishlist.find().populate("productId"))
+            .filter(item => item.productId);
 
         const payment = await Payment.find();
         const product = await Product.find();
